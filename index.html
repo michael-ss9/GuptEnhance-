@@ -17,6 +17,7 @@
 
 <main class="container">
 
+  <!-- Upload -->
   <section class="card" id="uploadCard">
     <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Image upload karo">
       <div class="dz-icon">🖼️</div>
@@ -27,6 +28,7 @@
     <p class="status" id="status">Koi image upload nahi hui abhi.</p>
   </section>
 
+  <!-- Controls -->
   <section class="card hidden" id="controls">
     <div class="preview-row">
       <img id="thumb" alt="preview">
@@ -50,10 +52,12 @@
 
     <div class="btn-row">
       <button class="btn btn-primary" id="enhanceBtn">✨ Enhance Karo</button>
+      <button class="btn btn-ai" id="aiBtn">🤖 AI 4x</button>
       <button class="btn btn-ghost" id="resetBtn">↺ New Image</button>
     </div>
   </section>
 
+  <!-- Result -->
   <section class="card hidden" id="resultSection">
     <h2 class="section-title">Before / After</h2>
     <p class="drag-hint">👆 Image pe finger rakh ke drag karo</p>
@@ -72,6 +76,7 @@
     </div>
   </section>
 
+  <!-- Features -->
   <section class="features">
     <div class="feature"><span>🎛️</span><h3>7 Enhancement Modes</h3><p>HD, UHD, Portrait, Denoise, Unblur, Text, Lighting — har photo ke liye specialist.</p></div>
     <div class="feature"><span>🔍</span><h3>2x / 4x / 8x Upscaling</h3><p>Har level ka alag tuned behavior — fast se extreme tak.</p></div>
@@ -95,6 +100,9 @@
 <script src="js/upscale-2x.js"></script>
 <script src="js/upscale-4x.js"></script>
 <script src="js/upscale-8x.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js"></script>
+<script src="js/ai-engine.js"></script>
 <script src="js/main.js"></script>
 </body>
-</html>
+  </html>
+  
