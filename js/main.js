@@ -110,7 +110,7 @@
     scaleHint.textContent=msg;
   }
 
-  /* ---------- Enhance ---------- */
+  /* ---------- Enhance (Classic) ---------- */
   enhanceBtn.addEventListener('click', ()=>{
     if(!originalImage) return;
     setBusy(true);
@@ -348,11 +348,7 @@
     if(!resultSection.classList.contains('hidden')) syncCompare();
   });
 
-  function setStatus(msg){ statusEl.textContent=msg; }
-  function setBusy(b){
-    enhanceBtn.disabled=b;
-    enhanceBtn.textContent=b?'⏳ Processing…':'✨ Enhance Karo';
-   /* ---------- AI hooks (js/ai-engine.js ke liye) ---------- */
+  /* ---------- AI hooks (js/ai-engine.js ke liye) ---------- */
   GUPT.getOriginal = function(){ return originalImage ? {img:originalImage, url:originalURL} : null; };
   GUPT.showAIResult = function(canvas){
     resultSection.classList.remove('hidden');
@@ -362,6 +358,12 @@
     requestAnimationFrame(syncCompare);
     resultSection.scrollIntoView({behavior:'smooth'});
   };
+
+  /* ---------- Helpers ---------- */
+  function setStatus(msg){ statusEl.textContent=msg; }
+  function setBusy(b){
+    enhanceBtn.disabled=b;
+    enhanceBtn.textContent=b?'⏳ Processing…':'✨ Enhance Karo';
   }
 })();
-        
+     
