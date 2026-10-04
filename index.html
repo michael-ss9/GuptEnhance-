@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuptEnhance — Free AI Image Enhancer</title>
+<meta name="description" content="GuptEnhance: 100% free image enhancer. Auto brightness, color boost, sharpening aur 2x upscaling — sab aapke browser mein, private aur secure.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">✨ Gupt<span>Enhance</span></div>
+  <p class="tagline">100% Free • Private • Browser mein process hota hai</p>
+</header>
+
+<main class="container">
+
+  <!-- Upload -->
+  <section class="card" id="uploadCard">
+    <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Image upload karo">
+      <div class="dz-icon">🖼️</div>
+      <p class="dz-title">Image yahan drop karo ya click karo</p>
+      <p class="dz-sub">JPG, PNG, WebP — image aapke device se browser ke bahar nahi jaati</p>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" hidden>
+    <p class="status" id="status">Koi image upload nahi hui abhi.</p>
+  </section>
+
+  <!-- Controls -->
+  <section class="card hidden" id="controls">
+    <div class="control-row">
+      <label for="strength">Enhancement Strength</label>
+      <div class="slider-wrap">
+        <input type="range" id="strength" min="0" max="100" value="70">
+        <span class="slider-val" id="strengthVal">70%</span>
+      </div>
+    </div>
+    <div class="control-row">
+      <label class="checkbox-label">
+        <input type="checkbox" id="upscale2x">
+        <span>2x Upscale <small>(image double resolution — thoda slow)</small></span>
+      </label>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="enhanceBtn">✨ Enhance Karo</button>
+      <button class="btn btn-ghost" id="resetBtn">↺ Reset</button>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section class="card hidden" id="resultSection">
+    <h2 class="section-title">Before / After <small>— slider ghumao compare karne ke liye</small></h2>
+    <div class="compare" id="compareWrap">
+      <img id="afterImg" alt="Enhanced image">
+      <div class="before-clip" id="beforeClip">
+        <img id="beforeImg" alt="Original image">
+      </div>
+      <div class="compare-line"></div>
+      <input type="range" class="cmp-slider" id="cmpSlider" min="0" max="100" value="50" aria-label="Compare slider">
+      <span class="tag tag-before">Original</span>
+      <span class="tag tag-after">Enhanced</span>
+    </div>
+    <div class="btn-row center">
+      <button class="btn btn-primary" id="downloadBtn">⬇ Download Enhanced Image</button>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature"><span>🔒</span><h3>Private</h3><p>Image kabhi server pe upload nahi hoti — sab processing aapke browser mein.</p></div>
+    <div class="feature"><span>🆓</span><h3>100% Free</h3><p>Koi limit nahi, koi watermark nahi, koi sign-up nahi.</p></div>
+    <div class="feature"><span>⚡</span><h3>Fast</h3><p>Internet ki speed par depend nahi — aapka device process karta hai.</p></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>GuptEnhance — Free &amp; Open Source • Made with ❤️ on GitHub Pages</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
