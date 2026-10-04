@@ -69,6 +69,11 @@ body{
 .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);flex:0 0 auto}
 .btn-ghost:hover{color:var(--text);border-color:var(--muted)}
 
+/* AI Enhance button */
+.btn-ai{background:linear-gradient(90deg,#00c853,#00d4ff);color:#fff;flex:1}
+.btn-ai:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,200,83,.4)}
+.btn-ai:disabled{opacity:.6;cursor:wait;transform:none}
+
 .section-title{font-size:1.2rem;margin-bottom:4px}
 .drag-hint{color:var(--muted);font-size:.82rem;margin-bottom:14px}
 .compare{position:relative;border-radius:var(--radius);overflow:hidden;
