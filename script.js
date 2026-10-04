@@ -1,4 +1,4 @@
-/* GuptEnhance — client-side image enhancement
+/* GuptEnhance v2 — strong client-side image enhancement
    Sab kuch browser mein hota hai: koi server, koi upload nahi. */
 (function(){
   'use strict';
@@ -78,14 +78,14 @@
     document.body.appendChild(a); a.click(); a.remove();
   });
 
-  /* ---------- Processing pipeline ---------- */
+  /* ---------- Processing pipeline (v2 — strong) ---------- */
   function processImage(img, strength, doUpscale){
     const w=img.naturalWidth, h=img.naturalHeight;
     const src=document.createElement('canvas');
     src.width=w; src.height=h;
     const sctx=src.getContext('2d');
     sctx.drawImage(img,0,0);
-    sctx.putImageData(autoLevels(sctx.getImageData(0,0,w,h), strength),0,0);
+    sctx.putImageData(enhancePass(sctx.getImageData(0,0,w,h), strength),0,0);
 
     if(doUpscale){
       const big=document.createElement('canvas');
@@ -95,15 +95,15 @@
       bctx.imageSmoothingQuality='high';
       bctx.drawImage(src,0,0,big.width,big.height);
       const r=Math.max(1,Math.round(w*0.002));
-      bctx.putImageData(unsharpMask(bctx.getImageData(0,0,big.width,big.height), r, 0.2+0.5*strength),0,0);
+      bctx.putImageData(unsharpMask(bctx.getImageData(0,0,big.width,big.height), r, 0.35+0.75*strength),0,0);
       return big;
     }
-    sctx.putImageData(unsharpMask(sctx.getImageData(0,0,w,h), 1, 0.15+0.6*strength),0,0);
+    sctx.putImageData(unsharpMask(sctx.getImageData(0,0,w,h), 2, 0.35+0.85*strength),0,0);
     return src;
   }
 
-  /* Auto levels: 1st–99th percentile stretch + contrast + saturation */
-  function autoLevels(imageData, strength){
+  /* v2: strong, clearly visible enhancement */
+  function enhancePass(imageData, strength){
     const d=imageData.data, n=d.length/4;
     const step=Math.max(1,Math.floor(n/50000));
     const lum=[];
@@ -114,22 +114,35 @@
     lum.sort((a,b)=>a-b);
     const lo=lum[Math.floor(lum.length*0.01)];
     const hi=lum[Math.floor(lum.length*0.99)];
-    if(hi-lo<12) return imageData; // already well-exposed
-    const range=hi-lo;
-    const contrastF=1+0.14*strength;
-    const satF=1+0.20*strength;
+    const range=Math.max(hi-lo,1);
+
+    const s=Math.min(1, 0.35+0.85*strength);
+    const contrastF=0.30*strength;
+    const satF=0.45*strength;
+
     for(let i=0;i<d.length;i+=4){
-      let r=(d[i]-lo)/range*255,
-          g=(d[i+1]-lo)/range*255,
-          b=(d[i+2]-lo)/range*255;
-      r=(r-128)*contrastF+128; g=(g-128)*contrastF+128; b=(b-128)*contrastF+128;
+      let r=d[i], g=d[i+1], b=d[i+2];
+
+      r=r+(((r-lo)/range*255)-r)*s;
+      g=g+(((g-lo)/range*255)-g)*s;
+      b=b+(((b-lo)/range*255)-b)*s;
+
+      r=(r/255-0.5)*(1+contrastF)+0.5; r*=255;
+      g=(g/255-0.5)*(1+contrastF)+0.5; g*=255;
+      b=(b/255-0.5)*(1+contrastF)+0.5; b*=255;
+
       const l=0.299*r+0.587*g+0.114*b;
-      d[i]=l+(r-l)*satF; d[i+1]=l+(g-l)*satF; d[i+2]=l+(b-l)*satF;
+      r=l+(r-l)*(1+satF);
+      g=l+(g-l)*(1+satF);
+      b=l+(b-l)*(1+satF);
+
+      d[i]  =r<0?0:r>255?255:r;
+      d[i+1]=g<0?0:g>255?255:g;
+      d[i+2]=b<0?0:b>255?255:b;
     }
     return imageData;
   }
 
-  /* Unsharp mask: 3-pass box blur (≈gaussian) then add difference */
   function boxBlur(src,w,h,radius){
     const tmp=new Float32Array(w*h*4), dst=new Uint8ClampedArray(w*h*4);
     const r=radius;
