@@ -90,3 +90,18 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px}
   .logo{font-size:1.7rem}
   .card{padding:20px}
 }
+/* Compare slider handle (visible) */
+.compare-handle{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-size:15px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,212,255,.5);
+  pointer-events:none;
+  border:3px solid #fff;
+  z-index:5;
+}
+.compare-line{width:4px;background:var(--accent2);
+  box-shadow:0 0 16px var(--accent2)}
