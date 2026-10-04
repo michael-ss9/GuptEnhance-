@@ -207,7 +207,12 @@
     beforeImg.style.height='auto';
     updateClip();
   }
-  function updateClip(){ beforeClip.style.width=cmpSlider.value+'%'; }
+    const compareHandle=$('compareHandle');
+  function updateClip(){
+    beforeClip.style.width=cmpSlider.value+'%';
+    compareHandle.style.left=cmpSlider.value+'%';
+  }
+
   cmpSlider.addEventListener('input', updateClip);
   window.addEventListener('resize', ()=>{
     if(!resultSection.classList.contains('hidden')) syncCompare();
