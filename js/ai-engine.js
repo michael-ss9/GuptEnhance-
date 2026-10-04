@@ -9,7 +9,7 @@ window.GUPT = window.GUPT || {};
 (function(){
   'use strict';
 
-  const MODEL_URL = 'models/realesrgan-x4plus.onnx';
+  const MODEL_URL = 'https://github.com/michael-ss9/GuptEnhance-/releases/download/v1/Real-ESRGAN-x4plus.onnx';
   const MAX_INPUT_DIM = 512;
   const TILE = 128;
   const PAD = 16;
