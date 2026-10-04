@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuptEnhance — Free AI Image Enhancer</title>
+<meta name="description" content="GuptEnhance: 100% free image enhancer — HD, UHD, Portrait, Denoise, Unblur, Text aur Lighting Fix modes. 2x/4x/8x upscaling. Sab processing aapke browser mein, private aur secure.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">✨ Gupt<span>Enhance</span></div>
+  <p class="tagline">Free • Private • 7 Modes • 2x / 4x / 8x Upscaling</p>
+</header>
+
+<main class="container">
+
+  <section class="card" id="uploadCard">
+    <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Image upload karo">
+      <div class="dz-icon">🖼️</div>
+      <p class="dz-title">Photo yahan drop karo ya click karo</p>
+      <p class="dz-sub">JPG, PNG, WebP • Image browser ke bahar nahi jaati</p>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" hidden>
+    <p class="status" id="status">Koi image upload nahi hui abhi.</p>
+  </section>
+
+  <section class="card hidden" id="controls">
+    <div class="preview-row">
+      <img id="thumb" alt="preview">
+      <div class="preview-info">
+        <p class="preview-name" id="previewName"></p>
+        <p class="preview-dims" id="previewDims"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <p class="group-label">✨ Enhancement Mode</p>
+      <div class="chips" id="modeChips"></div>
+      <p class="hint mode-desc" id="modeDesc"></p>
+    </div>
+
+    <div class="control-group">
+      <p class="group-label">🔍 Upscale (Resolution)</p>
+      <div class="chips" id="scaleChips"></div>
+      <p class="hint" id="scaleHint"></p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="enhanceBtn">✨ Enhance Karo</button>
+      <button class="btn btn-ghost" id="resetBtn">↺ New Image</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="resultSection">
+    <h2 class="section-title">Before / After</h2>
+    <p class="drag-hint">👆 Image pe finger rakh ke drag karo</p>
+    <div class="compare" id="compareWrap">
+      <img id="afterImg" alt="Enhanced image">
+      <div class="before-clip" id="beforeClip">
+        <img id="beforeImg" alt="Original image">
+      </div>
+      <div class="compare-line" id="compareLine"></div>
+      <div class="compare-handle" id="compareHandle">◂▸</div>
+      <span class="tag tag-before">Original</span>
+      <span class="tag tag-after">Enhanced</span>
+    </div>
+    <div class="btn-row center">
+      <button class="btn btn-primary" id="downloadBtn">⬇ Download Enhanced</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature"><span>🎛️</span><h3>7 Enhancement Modes</h3><p>HD, UHD, Portrait, Denoise, Unblur, Text, Lighting — har photo ke liye specialist.</p></div>
+    <div class="feature"><span>🔍</span><h3>2x / 4x / 8x Upscaling</h3><p>Har level ka alag tuned behavior — fast se extreme tak.</p></div>
+    <div class="feature"><span>👆</span><h3>Drag to Compare</h3><p>Before/After dekhne ke liye image pe simply drag karo.</p></div>
+    <div class="feature"><span>🔒</span><h3>100% Private</h3><p>Sab processing aapke browser mein — image kahin upload nahi hoti.</p></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>GuptEnhance — Free &amp; Open Source • Made with ❤️ on GitHub Pages</p>
+</footer>
+
+<script src="js/mode-hd.js"></script>
+<script src="js/mode-uhd.js"></script>
+<script src="js/mode-portrait.js"></script>
+<script src="js/mode-denoise.js"></script>
+<script src="js/mode-unblur.js"></script>
+<script src="js/mode-text.js"></script>
+<script src="js/mode-light.js"></script>
+<script src="js/upscale-2x.js"></script>
+<script src="js/upscale-4x.js"></script>
+<script src="js/upscale-8x.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
