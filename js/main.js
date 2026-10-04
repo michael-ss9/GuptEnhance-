@@ -352,6 +352,16 @@
   function setBusy(b){
     enhanceBtn.disabled=b;
     enhanceBtn.textContent=b?'⏳ Processing…':'✨ Enhance Karo';
+   /* ---------- AI hooks (js/ai-engine.js ke liye) ---------- */
+  GUPT.getOriginal = function(){ return originalImage ? {img:originalImage, url:originalURL} : null; };
+  GUPT.showAIResult = function(canvas){
+    resultSection.classList.remove('hidden');
+    beforeImg.src = originalURL;
+    afterImg.src = canvas.toDataURL('image/jpeg', 0.92);
+    afterImg.dataset.name = `guptenhance-ai-${canvas.width}x${canvas.height}.jpg`;
+    requestAnimationFrame(syncCompare);
+    resultSection.scrollIntoView({behavior:'smooth'});
+  };
   }
 })();
         
